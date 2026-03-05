@@ -15,4 +15,3 @@ venv/
 *.swp
 *.swo
 
-data/*.parquet
