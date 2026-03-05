@@ -1,6 +1,7 @@
 """Benchmark: Run the task, evaluate performance, and log to Weights & Biases."""
 
 import logging
+import uuid
 
 import wandb
 from dotenv import load_dotenv
@@ -20,7 +21,14 @@ logger = logging.getLogger(__name__)
 
 
 def evaluate():
-    wandb.init(project="artemis-intelligence", job_type="benchmark")
+    run_hash = uuid.uuid4().hex[:12]
+    logger.info("Run hash: %s", run_hash)
+
+    wandb.init(
+        project="artemis-intelligence",
+        job_type="benchmark",
+        config={"run_hash": run_hash},
+    )
 
     logger.info("Running task …")
     results_df = run_task()
