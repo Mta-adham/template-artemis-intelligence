@@ -27,7 +27,6 @@ def evaluate():
     wandb.init(
         project="artemis-intelligence",
         job_type="benchmark",
-        config={"run_hash": run_hash},
     )
 
     logger.info("Running task …")
@@ -42,6 +41,7 @@ def evaluate():
     f1 = f1_score(y_true, y_pred)
 
     wandb.log({
+        "run_hash": run_hash,
         "accuracy": accuracy,
         "precision": precision,
         "recall": recall,
